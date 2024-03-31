@@ -1,0 +1,16 @@
+/* Admin.css */
+.admin-container {
+    display: flex;
+  }
+  
+
+  
+  .content {
+    flex-grow: 1;
+    overflow-y: auto; /* Allow content to be scrollable */
+  
+  }
+  
+  
+  /* Adjust sidebar styles as needed */
+  

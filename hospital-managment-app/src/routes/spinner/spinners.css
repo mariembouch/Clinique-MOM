@@ -1,0 +1,20 @@
+/* spinners.css */
+
+body, html {
+    height: 100%;
+    margin: 0;
+  }
+  
+  .indication-couleur {
+    background: linear-gradient(rgb(4, 182, 93), 10%, pink);
+  }
+  
+  .degrade-lineaire {
+    background: linear-gradient(rgb(18, 194, 86), pink);
+  }
+  
+    /* Additional styles to ensure full height */
+  .p{ display: flex;
+    align-items: center;
+    justify-content: center;
+  }

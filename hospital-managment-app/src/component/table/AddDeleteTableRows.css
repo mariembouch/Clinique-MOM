@@ -1,0 +1,20 @@
+.container {
+    margin-top: 50px;
+    display:grid;
+    justify-content: center; /* Center the content horizontally */
+  }
+  
+  .btn-outline-success {
+    width: 100%;
+    max-width: 50px; /* Limiting width to maintain a consistent size */
+  }
+  
+  .btn-outline-success:hover {
+    background-color: #28a745; /* Change background color on hover */
+    color: #fff; /* Change text color on hover */
+  }
+  
+  .table th:last-child {
+    text-align: center; /* Center-align the "+" button */
+  }
+  

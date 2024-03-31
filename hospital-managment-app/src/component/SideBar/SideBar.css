@@ -1,0 +1,33 @@
+/* SideBar.css */
+.fixed-sidebar {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  width: 250px; /* Adjust width as needed */
+  z-index: 999; /* Ensure it's above other content */
+  overflow-y: auto; /* Allow sidebar content to scroll if it overflows */
+  background: linear-gradient(145deg, #e2e8ec, #ffffff);
+  box-shadow: 4px 4px 8px #cbcbcb, -4px -4px 8px #ffffff;
+
+}
+
+.btn1 {
+  border-radius: 6px;
+  transition: 0.3s all ease;
+  cursor: pointer;
+  height: fit-content;
+  color: #04923f;
+}
+
+.btn1 {
+  background: linear-gradient(145deg, #e2e8ec, #ffffff);
+  box-shadow: 4px 4px 8px #cbcbcb, -4px -4px 8px #ffffff;
+}
+
+.btn1:hover {
+  background: #04923f;
+  color: white;
+  transform: translateY(-10px);
+
+}

@@ -1,0 +1,34 @@
+/* Profile.css */
+.Contact {
+  padding: 0px;
+margin: 0px;
+}
+
+.Contact .left {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  align-items: center;
+  min-height: 100vh;
+}
+
+.Contact .box {
+  padding: 20px;
+}
+
+.Contact .img {
+  text-align: center;
+}
+
+.Contact .img img {
+  max-height: 250px; /* Adjust the maximum height of the image */
+  width: auto;
+}
+
+@media (max-width: 768px) {
+  .Contact .left,
+  .Contact .right {
+    width: 100%;
+  }
+}
