@@ -35,6 +35,7 @@ function AllData() {
             <th>Email</th>
             <th>CIN</th>
             <th>Gender</th>
+            <th>doctor spécialité===service </th>
           </tr>
         </thead>
         <tbody>

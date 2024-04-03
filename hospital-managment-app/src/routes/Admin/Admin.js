@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import AdminMenu from "../Admin/AdminMenu";
+//import AdminMenu from "../Admin/AdminMenu";
 import { useWeb3 } from "../../Web3helpers.js";
+import AddAssistants from "../Admin/AddAssistants.js";
+import AddDoctors from "../Admin/AddDoctors.js";
 
 import Header from "../../component/Head/Header"
 import SideBar from "../../component/SideBar/SideBar"
@@ -40,9 +42,7 @@ const Admin = () => {
          <br></br>
       <div className="admin-container">
         
-        <div className="sidebar-container">
-          <SideBar collapsed={collapsed} toggleCollapsed={toggleCollapsed} />
-        </div>
+       
         <div className="content">
           <Profile/>
          
@@ -59,8 +59,8 @@ const Admin = () => {
 
       <h3>Your account: {account} </h3>
       <h3>Your email: {email} </h3>
-      <AdminMenu />
-
+      <AddAssistants/>
+<AddDoctors/>
       <AllData/>
       <button
         style={button}

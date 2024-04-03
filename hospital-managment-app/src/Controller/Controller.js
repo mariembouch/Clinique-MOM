@@ -7,7 +7,6 @@ import Patients from "../routes/Clients/Client.js"
 import Assistants from "../routes/Assistant/Assistant.js"
 import Ambulance from "../routes/Ambulance/Ambulance.js"
 import SignIn from "../routes/Login/Signin.js"
-import SignUp from "../routes/Login/Signup.js"
 
 
 import "./Controller.css";
@@ -25,7 +24,6 @@ const Controller = () => {
         <Route path="/admin" element={<Admin />} /> {/* Route for admin */}
         <Route path="/Ambulance" element={<Ambulance />} /> {/* Route for ambulance */}
         <Route exact path="/signIn" element={<SignIn />} />
-	  	  <Route path="/Signup" element={<SignUp />} />
         <Route
           path="/Admin"
           element={email ? <Admin /> : <Navigate to="/signIn" />}
