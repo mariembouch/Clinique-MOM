@@ -2,14 +2,17 @@ import React, { useEffect, useState } from "react";
 import { loadBlockchainData, loadWeb3 } from "../../Web3helpers.js";
 import { useNavigate } from "react-router-dom";
 
+
 export default function SignIn() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
+
     const [accounts, setAccounts] = useState(null);
     const [auth, setAuth] = useState(null);
     const [adminAddress, setAdminAddress] = useState("");
+
 
     const loadAccounts = async () => {
         let { auth, accounts } = await loadBlockchainData();
@@ -19,59 +22,59 @@ export default function SignIn() {
         loadAdminAddress(); // Call loadAdminAddress after setting auth
     };
 
+
     const loadAdminAddress = async () => {
-		if (auth) {
-			const adminAddress = await auth.methods.getAdminAddress().call();
-			setAdminAddress(adminAddress);
-			console.log("Admin Address:", adminAddress);
-		}
-	};
-	
-	const login = async () => {
-		if (!email || !password) {
-			alert("Please fill all details");
-			return;
-		}
-	
-		try {
-			console.log("Accounts:", accounts);
-			console.log("Admin Address:", adminAddress);
-			
-			// Vérifier si l'utilisateur connecté avec MetaMask est l'administrateur
-			if (accounts.toLowerCase() !== adminAddress.toLowerCase()) {
-				alert("You are not authorized to log in as admin");
-				return;
-			}
-	
-			const res = await auth.methods.usersList(email).call();
-			
-			// Vérifier si l'email existe dans la liste des utilisateurs
-			if (!res.add) {
-				alert("User does not exist. Please sign up.");
-				return;
-			}
-	
-			// Vérifier les informations d'identification de l'utilisateur
-			if (res.password === password) {
-				localStorage.setItem("email", email);
-				localStorage.setItem("account", accounts);
-				navigate("/Admin");
-			} else {
-				alert("Wrong password or please sign up");
-			}
-		} catch (error) {
-			alert(error.message);
-		}
-	};
-	
+        if (auth) {
+            const adminAddress = await auth.methods.getAdminAddress().call();
+            setAdminAddress(adminAddress);
+            console.log("Admin Address:", adminAddress);
+        }
+    };
+   
+    const login = async () => {
+        if (!email || !password) {
+            alert("Please fill all details");
+            return;
+        }
+   
+        try {
+            console.log("Accounts:", accounts);
+            console.log("Admin Address:", adminAddress);
+           
+            // Vérifier si l'utilisateur connecté avec MetaMask est l'administrateur
+            if (accounts.toLowerCase() !== adminAddress.toLowerCase()) {
+                alert("You are not authorized to log in as admin");
+                return;
+            }
+   
+            const res = await auth.methods.usersList(email).call();
+           
+          
+   
+            // Vérifier les informations d'identification de l'utilisateur
+            if (res.password === password) {
+                localStorage.setItem("email", email);
+                localStorage.setItem("account", accounts);
+                navigate("/Admin");
+            } else {
+                alert("Wrong password or please sign up");
+            }
+        } catch (error) {
+            alert(error.message);
+        }
+    };
+   
+
 
     useEffect(() => {
         loadWeb3();
     }, []);
 
+
     useEffect(() => {
         loadAccounts();
     }, []); // Removed loadAdminAddress from dependency array
+
 
     return (
         <div style={rootDiv}>
@@ -99,10 +102,12 @@ export default function SignIn() {
                 Sign In
             </button>
 
+
            
         </div>
     );
 }
+
 
 const rootDiv = {
     display: "flex",
@@ -111,6 +116,7 @@ const rootDiv = {
     justifyContent: "center",
     height: "100vh",
 };
+
 
 const input = {
     width: 300,
@@ -121,6 +127,7 @@ const input = {
     border: "2px solid grey",
     fontSize: 17,
 };
+
 
 const button = {
     width: 325,
@@ -134,8 +141,12 @@ const button = {
     border: "none",
 };
 
+
 const image = {
     width: 100,
     height: 100,
     objectFit: "contain",
 };
+
+
+

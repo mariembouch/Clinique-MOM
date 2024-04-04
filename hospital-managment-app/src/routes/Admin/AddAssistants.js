@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useWeb3 } from "../../Web3helpers";
 
 export default function AddAssistant() {
+    const [add, setAdd] = useState("");
+
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -12,46 +14,21 @@ export default function AddAssistant() {
     const addUser = async () => {
         try {
             const [selectedAccount] = await window.ethereum.request({ method: 'eth_requestAccounts' });
-            await web3Data.auth.methods.createUser(username, email, password, "assistants").send({ from: selectedAccount });
+            await web3Data.auth.methods.createUser(add,username, email, password, "assistants").send({ from: selectedAccount });
             alert("User added successfully!");
-            fetchAssistants(); // Fetch updated list of assistants after adding a new one
         } catch (error) {
             console.error(error.message);
         }
     };
 
-    const fetchAssistants = async () => {
-        try {
-            const totalUsers = await web3Data.auth.methods.userCount().call();
-            const assistantsArray = [];
 
-            for (let i = 1; i <= totalUsers; i++) {
-                const user = await web3Data.auth.methods.usersList(i).call();
-                if (user.role === "assistants") {
-                    assistantsArray.push(user);
-                }
-            }
 
-            setUsers(assistantsArray);
-        } catch (error) {
-            console.error(error.message);
-        }
-    };
-
-    useEffect(() => {
-        if (web3Data && web3Data.auth) {
-            fetchAssistants(); // Fetch assistants when component mounts
-        }
-    }, [web3Data]);
-
-    // This useEffect will re-fetch assistants whenever "users" state changes
-    useEffect(() => {
-        fetchAssistants();
-    }, [users]);
 
     return (
         <div>
             <h3>Add assistants</h3>
+            <label>Address metamask</label>
+            <input type="text" value={add} onChange={(e) => setAdd(e.target.value)} />
             <label>Username:</label>
             <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
             <label>Email:</label>

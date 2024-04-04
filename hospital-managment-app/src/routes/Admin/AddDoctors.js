@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useWeb3 } from "../../Web3helpers";
 
 export default function AddDoctor() {
+    const [add, setAdd] = useState("");
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -12,47 +13,21 @@ export default function AddDoctor() {
     const addUser = async () => {
         try {
             const [selectedAccount] = await window.ethereum.request({ method: 'eth_requestAccounts' });
-            await web3Data.auth.methods.createUser(username, email, password, "doctors").send({ from: selectedAccount });
+            await web3Data.auth.methods.createUser(add,username, email, password, "doctors").send({ from: selectedAccount });
             alert("User added successfully!");
-            fetchDoctors(); // Fetch updated list of doctors after adding a new doctor
         } catch (error) {
             console.error(error.message);
         }
     };
 
-    const fetchDoctors = async () => {
-        try {
-            const totalUsers = await web3Data.auth.methods.userCount().call();
-            const doctorsArray = [];
-    
-            for (let i = 1; i <= totalUsers; i++) {
-                const user = await await web3Data.auth.methods.usersList().call();
-                if (user.role === "doctors") {
-                    doctorsArray.push(user);
-                }
-            }
-    
-            setDoctors(doctorsArray);
-        } catch (error) {
-            console.error(error.message);
-        }
-    };
+ 
    
-     
-    useEffect(() => {
-        if (web3Data && web3Data.auth) {
-            fetchDoctors(); // Fetch doctors when component mounts
-        }
-    }, [web3Data]);
-
-    // This useEffect will re-fetch doctors whenever "doctors" state changes
-    useEffect(() => {
-        fetchDoctors();
-    }, [doctors]);
 
     return (
         <div>
             <h3>Add doctors</h3>
+            <label>Address metamask</label>
+            <input type="text" value={add} onChange={(e) => setAdd(e.target.value)} />
             <label>Username:</label>
             <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
             <label>Email:</label>
