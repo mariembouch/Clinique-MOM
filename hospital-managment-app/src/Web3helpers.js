@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Web3 from "web3";
 import Auth from "./contracts/Auth.json";
 
@@ -14,12 +14,14 @@ export const loadWeb3 = async () => {
     );
   }
 };
-
 export const loadBlockchainData = async () => {
   try {
-    const web3 = window.web3;
+    if (!window.ethereum) {
+      throw new Error("MetaMask is not installed or not active.");
+    }
+    const web3 = new Web3(window.ethereum);
     // Load account
-    const accounts = await web3.eth.getAccounts();
+    const accounts = await web3.eth.requestAccounts();
 
     // Network ID
     const networkId = await web3.eth.net.getId();
@@ -27,7 +29,7 @@ export const loadBlockchainData = async () => {
     // Network data
     if (networkId && Auth.networks[networkId]) {
       const auth = new web3.eth.Contract(Auth.abi, Auth.networks[networkId].address);
-      return { auth, accounts: accounts[0] };
+      return { auth, accounts: accounts }; // Return accounts along with other data
     } else {
       throw new Error("Contract not deployed to detected network.");
     }
@@ -36,6 +38,7 @@ export const loadBlockchainData = async () => {
     throw error;
   }
 };
+
 
 export const useWeb3 = () => {
   const [web3Data, setWeb3Data] = useState(null);

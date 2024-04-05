@@ -3,6 +3,8 @@ const path = require("path");
 const mongoose = require("mongoose");
 
 const DataModel = require("./DataModel");
+const DataModel1 = require("./DataModel1");
+
 const connectDB = require("./Database");
 connectDB();
 
@@ -16,6 +18,41 @@ app.use(cors());
 
 
 
+app.post("/writeDataModel1", async (req, res) => {
+  try {
+    const { Address, Key } = req.body;
+    const newData = new DataModel1({ Address, Key, valid: 0 });
+    await newData.save();
+    res.json({ message: "Data saved successfully to DataModel1" });
+  } catch (error) {
+    console.error("Error while saving data to DataModel1:", error);
+    res.status(500).json({ error: "Server error while saving data to DataModel1" });
+  }
+});
+
+app.put("/makeValidDataModel1/:address", async (req, res) => {
+  try {
+    const { address } = req.params;
+    const updatedData = await DataModel1.findOneAndUpdate({ Address: address }, { valid: 1 });
+    if (!updatedData) {
+      return res.status(404).json({ error: "Data not found" });
+    }
+    res.json({ message: "Data updated successfully in DataModel1", updatedData });
+  } catch (error) {
+    console.error("Error while updating data in DataModel1:", error);
+    res.status(500).json({ error: "Server error while updating data in DataModel1" });
+  }
+});
+
+app.get("/invalidAddresses", async (req, res) => {
+  try {
+    const invalidAddresses = await DataModel1.find({ valid: 0 });
+    res.json(invalidAddresses);
+  } catch (error) {
+    console.error("Error while fetching invalid addresses:", error);
+    res.status(500).json({ error: "Server error while fetching invalid addresses" });
+  }
+});
 
 
 // Route to update all patients' valid field to 1 in MongoDB

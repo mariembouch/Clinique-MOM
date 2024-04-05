@@ -34,3 +34,8 @@ const Controller = () => {
 };
 
 export default Controller;
+
+
+/*<Route path="/doctors" element={email ? <Doctors /> : <Navigate to="/signIn" />} />
+<Route path="/assistants" element={email ? <Assistants /> : <Navigate to="/signIn" />} />
+*/
