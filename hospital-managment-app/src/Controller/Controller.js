@@ -1,17 +1,18 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes ,Navigate} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import HomePage from "../routes/HomePage/HomePage.js";
 import Doctors from "../routes/Doctors/Doctor.js"
 import Admin from "../routes/Admin/Admin.js"
 import Patients from "../routes/Clients/Client.js"
 import Assistants from "../routes/Assistant/Assistant.js"
 import Ambulance from "../routes/Ambulance/Ambulance.js"
-import SignIn from "../routes/Login/Signin.js"
+import SignIn from  "../routes/Login/Connexion.js" 
+
+import "./Controller.css";
 
 
 import "./Controller.css";
 
-const email = localStorage.getItem("email");
 
 const Controller = () => {
   return (
@@ -21,13 +22,10 @@ const Controller = () => {
         <Route path="/doctors" element={<Doctors />} /> {/* Route for doctors */}
         <Route path="/patients" element={<Patients />} /> {/* Route for patients */}
         <Route path="/assistants" element={<Assistants />} /> {/* Route for assistants */}
-        <Route path="/admin" element={<Admin />} /> {/* Route for admin */}
+        <Route path="/Admin" element={<Admin />} /> {/* Route for admin */}
         <Route path="/Ambulance" element={<Ambulance />} /> {/* Route for ambulance */}
-        <Route exact path="/signIn" element={<SignIn />} />
-        <Route
-          path="/Admin"
-          element={email ? <Admin /> : <Navigate to="/signIn" />}
-        />
+       
+          <Route path="/SignIn" element={<SignIn />} />
       </Routes>
     </Router>
   );
@@ -38,4 +36,10 @@ export default Controller;
 
 /*<Route path="/doctors" element={email ? <Doctors /> : <Navigate to="/signIn" />} />
 <Route path="/assistants" element={email ? <Assistants /> : <Navigate to="/signIn" />} />
+ <Route exact path="/Login" element={<SignInB />} />
+        <Route path="/loginmongo" element={<Loginmongo/>}/>
+        <Route path="/LoginAll" element={<Carousel/>}/>
+        import SignInB from "../routes/Login/Login.js"
+import Loginmongo from "../routes/Login/loginmongo.js"
+import Carousel from "../routes/Login/LoginAll.js"
 */

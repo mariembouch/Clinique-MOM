@@ -43,13 +43,13 @@ const Home = () => {
               <div className='col_1'>
                 <h4>BEST SERVICES ON</h4>
                 <button className='btn_shadow'>
-                  <img src={skill1} alt='' />
+                  <img src={skill1} alt=''/>
                 </button>
                 <button className='btn_shadow'>
-                  <img src={skill2} alt='' />
+                  <img src={skill2} alt=''/>
                 </button>
                 <button className='btn_shadow'>
-                  <img src={skill3} alt='' />
+                  <img src={skill3} alt=''/>
                 </button>
               </div>
             </div>
@@ -67,5 +67,5 @@ const Home = () => {
     </>
   )
 }
-
+    
 export default Home

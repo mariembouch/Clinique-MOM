@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './AllData.css'; // Importer le fichier CSS
 
 
 function AllData() {
@@ -23,8 +24,8 @@ function AllData() {
 
 
   return (
-    <div>
-      <h2>All Data:</h2>
+    <div className='table'>
+      <h2>Patients</h2>
       <table>
         <thead>
           <tr>
@@ -46,6 +47,9 @@ function AllData() {
               <td>{patient.Email}</td>
               <td>{patient.CIN}</td>
               <td>{patient.Gender}</td>
+              <td>{patient.Service}</td>
+
+
             </tr>
           ))}
         </tbody>

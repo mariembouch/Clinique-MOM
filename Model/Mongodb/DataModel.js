@@ -22,6 +22,10 @@ const DataSchema = new mongoose.Schema({
             type: String,
             required: true
         },
+        Service: {
+            type: String,
+            required: true
+        },
         valid: {
             type: Number,
             default: 0 // Provide a default value

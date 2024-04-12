@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useWeb3 } from "../../Web3helpers";
 import axios from 'axios';
+import { loadBlockchainData } from "../../Web3helpers";
 
 export default function AddDoctor() {
     const [username, setUsername] = useState("");
@@ -9,8 +9,7 @@ export default function AddDoctor() {
     const [doctors, setDoctors] = useState([]);
     const [invalidAddresses, setInvalidAddresses] = useState([]);
     const [selectedAddress, setSelectedAddress] = useState('');
-
-    const { web3Data } = useWeb3();
+    const [service, setService] = useState(""); // Nouveau champ pour le service
 
     useEffect(() => {
         const fetchInvalidAddresses = async () => {
@@ -32,21 +31,25 @@ export default function AddDoctor() {
 
     const addDoctor = async () => {
         try {
-            const [selectedAccount] = await window.ethereum.request({ method: 'eth_requestAccounts' });
-            await web3Data.auth.methods.createDoctor(selectedAddress, username, email, password).send({ from: selectedAccount });
-            alert("Doctor added successfully!");
+            const { contract } = await loadBlockchainData();
+            if (contract) {
+                const [selectedAccount] = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                await contract.methods.createDoctor(selectedAddress, username, email, password, service).send({ from: selectedAccount });
+                alert("Doctor added successfully!");
 
-            // Log the data stored in the blockchain
-            console.log(selectedAccount);
+                // Log the data stored in the blockchain
+                console.log(selectedAccount);
+                console.log("Doctor details stored in the blockchain:", selectedAddress);
+                console.log("Username:", username);
+                console.log("Email:", email);
+                console.log("Password:", password);
+                console.log("Service:", service); // Log du service
 
-            console.log("Doctor details stored in the blockchain:",selectedAddress);
-            console.log("Username:", username);
-            console.log("Email:", email);
-            console.log("Password:", password);
-
-            // Update the validity of the selected address in MongoDB
-            await axios.put(`http://localhost:5000/makeValidDataModel1/${selectedAddress}`);
-
+                // Update the validity of the selected address in MongoDB
+                await axios.put(`http://localhost:5000/makeValidDataModel1/${selectedAddress}`);
+            } else {
+                console.error("Unable to fetch contract data.");
+            }
         } catch (error) {
             console.error(error.message);
         }
@@ -72,6 +75,7 @@ export default function AddDoctor() {
             <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
             <label>Password:</label>
             <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+            <input type="text" value={service} onChange={(e) => setService(e.target.value)} /> {/* Nouveau champ pour le service */}
             <button onClick={addDoctor}>Add Doctor</button>
             <br />
             <h4>List of Doctors:</h4>

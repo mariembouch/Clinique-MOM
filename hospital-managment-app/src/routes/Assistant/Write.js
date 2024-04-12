@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from "axios";
+import "./Write.css"; // Importer le fichier CSS
 
 function Write() {
   const [patientData, setPatientData] = useState({
@@ -8,6 +9,7 @@ function Write() {
     Email: "",
     CIN: "",
     Gender: "",
+    Service:"",
     valid:""
   });
 
@@ -18,7 +20,7 @@ function Write() {
 
   const saveData = async () => {
     try {
-      const dataToSend = { ...patientData, valid: 0 }; // Include valid field
+      const dataToSend = { ...patientData, valid: 0 }; // Inclure le champ valide
       await axios.post("http://localhost:5000/writetodatabase", dataToSend);
       alert("Data saved successfully");
       window.location.reload();
@@ -27,19 +29,28 @@ function Write() {
       console.log("Error while saving data:", error.message);
     }
   };
-  
-  
 
   return (
-    <div>
+    <>
+    <div className='all'>
+    <div className="form-container">
+      <h2>Add Patients</h2> {/* Titre "Add Patients" */}
       <input type="text" name="prenom" placeholder="prenom" value={patientData.prenom} onChange={handleChange} />
       <input type="text" name="nom" placeholder="nom" value={patientData.nom} onChange={handleChange} />
-      <input type="email" name="Email" placeholder="Email" value={patientData.Email} onChange={handleChange} />
+      <input type="text" name="Email" placeholder="Email" value={patientData.Email} onChange={handleChange} />
       <input type="text" name="CIN" placeholder="CIN" value={patientData.CIN} onChange={handleChange} />
       <input type="text" name="Gender" placeholder="Gender" value={patientData.Gender} onChange={handleChange} />
-      <button onClick={saveData}>Save data to MongoDB</button>
-    </div>
+      <input type="text" name="Service" placeholder="Service" value={patientData.Service} onChange={handleChange} />
 
+      <button onClick={saveData} type="submit">Save</button>
+    </div>
+     <div className="photo"
+     style={{
+            backgroundImage: `url(${require("../../component/pic/img1.jpg")})`,
+            }}>
+   </div>
+   </div>
+   </>
   );
 }
 

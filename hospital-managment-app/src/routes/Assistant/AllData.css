@@ -1,0 +1,28 @@
+.table {
+    width: 50%; /* Largeur du tableau */
+    margin: 0 auto; /* Centrer le tableau horizontalement */
+    border-collapse: collapse; /* Fusionner les bordures des cellules */
+    margin-top: 20px; /* Espacement en haut du tableau */
+  }
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #04923f; /* Couleur de fond pour les en-têtes de colonne */
+    color: #fff; /* Couleur de texte pour les en-têtes de colonne */
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2; /* Couleur de fond pour les lignes paires */
+  }
+  
+  tr:hover {
+    background-color: #ddd; /* Couleur de fond au survol */
+  }
+  h2{
+    color: #04923f;
+  }

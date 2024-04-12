@@ -19,7 +19,7 @@ contract ValidatePatient {
         uint256 temperature,
         bytes32[] hashList
     );
-
+   
     function addAllPatients(string[][] memory _patients) public {
         for (uint256 i = 0; i < _patients.length; i++) {
             patientCount++;

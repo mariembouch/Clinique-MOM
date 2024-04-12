@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
 
+
 const DataModel = require("./DataModel");
 const DataModel1 = require("./DataModel1");
 
@@ -87,13 +88,34 @@ app.get("/readfromserver", (req, res) => {
 
 app.post("/writetodatabase", async (req, res) => {
   try {
-    const { prenom, nom, Email, CIN, Gender ,valid} = req.body;
-    const newData = new DataModel({ prenom, nom, Email, CIN, Gender, valid});
+    const { prenom, nom, Email, CIN, Gender,Service ,valid} = req.body;
+    const newData = new DataModel({ prenom, nom, Email, CIN, Gender,Service, valid});
     await newData.save();
     res.json({ message: "Data saved successfully" });
   } catch (error) {
     console.log("Error while saving data:", error.message);
     res.status(500).send("Server error while saving data");
+  }
+});
+
+
+app.post("/signin", async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    // Recherchez l'utilisateur dans la base de données par e-mail
+    const user = await DataModel.findOne({ Email: email });
+    if (!user) {
+      return res.status(400).json({ error: "Adresse e-mail incorrecte" });
+    }
+    // Vérifiez si le mot de passe correspond
+    if (password !== user.CIN) {
+      return res.status(400).json({ error: "Mot de passe incorrect" });
+    }
+    // Si tout est bon, l'utilisateur est authentifié avec succès
+    res.json({ message: "Connexion réussie", user });
+  } catch (error) {
+    console.error("Erreur lors de la connexion:", error.message);
+    res.status(500).json({ error: "Erreur du serveur lors de la connexion" });
   }
 });
 

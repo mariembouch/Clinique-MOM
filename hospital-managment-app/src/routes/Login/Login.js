@@ -1,143 +1,74 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Header from "../../component/Head/Header";
+import { loadBlockchainData } from "../../Web3helpers.js";
 
-import "./Login.css";
-
-const Login = () => {
-  const [data, setData] = useState({
-    email: "",
-    pwd: "",
-  });
-
-  const InputEvent = (event) => {
-    const { name, value } = event.target;
-    setData((preVal) => ({
-      ...preVal,
-      [name]: value,
-    }));
-  };
-
+export default function SignIn() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const [selectedRole, setSelectedRole] = useState("");
+  const [contract, setContract] = useState(null);
+  const [account, setAccount] = useState(null); // Ajouter le state pour stocker l'adresse du compte
 
-  const handleCheckboxChange = (event) => {
-    setSelectedRole(event.target.value);
-  };
+  useEffect(() => {
+    const fetchData = async () => {
+      const { contract, account } = await loadBlockchainData();
+      setContract(contract);
+      setAccount(account); // Mettre à jour le state avec l'adresse du compte
+    };
+    fetchData();
+  }, []);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    switch (selectedRole) {
-      case "doctors":
-        navigate("/doctors");
-        break;
-      case "patients":
-        navigate("/patients");
-        break;
-      case "assistants":
+  const login = async (event) => {
+    event.preventDefault(); // Empêche la soumission du formulaire par défaut
+
+    if (!email || !password ) {
+      alert("Please fill all details");
+      return;
+    }
+
+    try {
+      const role = await contract.methods.VerifyRole(email, password).call({ from: account });
+      console.log(role);
+      if (role === "admin") {
+        localStorage.setItem("email", email);
+        navigate("/Admin");
+      } else if (role === "doctor") {
+        localStorage.setItem("email", email);
+        navigate("/Doctors");
+      } else if (role === "assistant") {
+        localStorage.setItem("email", email);
         navigate("/assistants");
-        break;
-      case "admin":
-        navigate("/admin");
-        break;
-      case "Ambulance":
-        navigate("/Ambulance");
-        break;
-      default:
-        break;
+      } else {
+        alert("Invalid email or password");
+      }
+    } catch (error) {
+      console.error(error.message);
+      alert("An error occurred. Please try again.");
     }
   };
 
   return (
-    <>
-      <Header />
-      <section className="center">
-      <div className="right box_shodow">
-        <form onSubmit={handleSubmit}>
-          <div className="input row">
-            <span>Email </span>
-            <input
-              type="text"
-              name="email"
-              value={data.email}
-              onChange={InputEvent}
-            />
-          </div>
-          <div className="input row">
-            <span>Mot de passe  </span>
-            <input
-              type="password"
-              name="pwd"
-              value={data.pwd}
-              onChange={InputEvent}
-            />
-          </div>
-          <div className="intro">
-            <h3>Dans notre clinique, chaque individu joue un rôle bien défini, mais tous convergent vers un objectif commun : </h3>
-          <h3>assurer la santé de nos patients !  </h3>
-          <h2>merci de bien choisir votre role  </h2>
-
-          </div>
-          <div className="login-container">
-            <form onSubmit={handleSubmit}>
-            <label>
-                <input
-                  type="checkbox"
-                  value="patients"
-                  checked={selectedRole === "patients"}
-                  onChange={handleCheckboxChange}
-                />
-                Patients
-              </label>
-              <label>
-                <input
-                  type="checkbox"
-                  value="Ambulance"
-                  checked={selectedRole === "Ambulance"}
-                  onChange={handleCheckboxChange}
-                />
-             Urgence 
-              </label>
-              <label>
-                <input
-                  type="checkbox"
-                  value="doctors"
-                  checked={selectedRole === "doctors"}
-                  onChange={handleCheckboxChange}
-                />
-                Doctors
-              </label>
-             
-              <label>
-                <input
-                  type="checkbox"
-                  value="assistants"
-                  checked={selectedRole === "assistants"}
-                  onChange={handleCheckboxChange}
-                />
-                Assistants
-              </label>
-              <label>
-                <input
-                  type="checkbox"
-                  value="admin"
-                  checked={selectedRole === "admin"}
-                  onChange={handleCheckboxChange}
-                />
-                Administration
-              </label>
-            
-             
-            </form>
-          </div>
-          <button className="btn_shadow" type="submit">
-            SUBMIT <i className="fa fa-long-arrow-right"></i>
-          </button>
-        </form>
-      </div>
-      </section>
-    </>
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+      <form onSubmit={login}> {/* Enveloppez les champs d'entrée avec un formulaire */}
+        <input
+          style={{ margin: "5px", padding: "5px" }}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Email"
+          type="text"
+        />
+        <input
+          style={{ margin: "5px", padding: "5px" }}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password"
+          type="password"
+        />
+        <button style={{ margin: "5px", padding: "5px" }} type="submit">
+          {" "}
+          Sign In
+        </button>
+      </form>
+    </div>
   );
-};
-
-export default Login;
+}

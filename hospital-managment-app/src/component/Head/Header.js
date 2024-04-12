@@ -57,15 +57,13 @@ const Header = () => {
               <a href="#Headv">Headv</a>
             </li>
             <li>
-              <Link to="/signIn" className="home-btn">
+              <Link to="/Login" className="home-btn">
                 Log in
               </Link>
             </li>
           </ul>
 
-          <button className="toggle" onClick={() => setMobile(!mobile)}>
-            {mobile ? <i className="fas fa-times close home-btn"></i> : <i className="fas fa-bars open"></i>}
-          </button>
+          
         </div>
       </div>
     </header>

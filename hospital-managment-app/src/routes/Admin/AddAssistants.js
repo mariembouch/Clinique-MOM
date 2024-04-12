@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { useWeb3 } from "../../Web3helpers";
 import axios from 'axios';
+import { loadBlockchainData } from "../../Web3helpers";
 
 export default function AddAssistant() {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [assistants] = useState([]);
+    const [assistants, setAssistants] = useState([]);
     const [invalidAddresses, setInvalidAddresses] = useState([]);
     const [selectedAddress, setSelectedAddress] = useState('');
-
-    const { web3Data } = useWeb3();
 
     useEffect(() => {
         const fetchInvalidAddresses = async () => {
@@ -32,22 +30,28 @@ export default function AddAssistant() {
 
     const addAssistant = async () => {
         try {
-            const [selectedAccount] = await window.ethereum.request({ method: 'eth_requestAccounts' });
-            await web3Data.auth.methods.createAssistant(selectedAddress, username, email, password).send({ from: selectedAccount });
-            alert("Assistant added successfully!");
+            const { contract } = await loadBlockchainData();
+            if (contract) {
+                const [selectedAccount] = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                await contract.methods.createAssistant(selectedAddress, username, email, password).send({ from: selectedAccount });
+                alert("Assistant added successfully!");
     
-            // Update the validity of the selected address in MongoDB
-            await axios.put(`http://localhost:5000/makeValidDataModel1/${selectedAddress}`);
+                // Update the validity of the selected address in MongoDB
+                await axios.put(`http://localhost:5000/makeValidDataModel1/${selectedAddress}`);
     
-            // Log the added assistant's data
-            console.log("Assistant added successfully. Assistant Data:", {
-                address: selectedAddress,
-                username,
-                email,
-                password
-            });
+                // Log the added assistant's data
+                console.log("Assistant added successfully. Assistant Data:", {
+                    address: selectedAddress,
+                    username,
+                    email,
+                    password
+                });
     
-           
+                // Update the list of assistants
+                setAssistants([...assistants, { username, email, password }]);
+            } else {
+                console.error("Unable to fetch contract data.");
+            }
         } catch (error) {
             console.error(error.message);
         }

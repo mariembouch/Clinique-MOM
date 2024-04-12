@@ -1,63 +1,31 @@
-import { useState, useEffect } from "react";
 import Web3 from "web3";
-import Auth from "./contracts/Auth.json";
+import AuthContract from "./contracts/Auth.json";
 
-export const loadWeb3 = async () => {
-  if (window.ethereum) {
-    window.web3 = new Web3(window.ethereum);
-    await window.ethereum.enable();
-  } else if (window.web3) {
-    window.web3 = new Web3(window.web3.currentProvider);
-  } else {
-    window.alert(
-      "Non-Ethereum browser detected. You should consider trying MetaMask!"
-    );
-  }
-};
-export const loadBlockchainData = async () => {
+const loadBlockchainData = async () => {
   try {
-    if (!window.ethereum) {
-      throw new Error("MetaMask is not installed or not active.");
-    }
-    const web3 = new Web3(window.ethereum);
-    // Load account
-    const accounts = await web3.eth.requestAccounts();
+    if (window.ethereum) {
+      window.web3 = new Web3(window.ethereum);
+      await window.ethereum.enable();
 
-    // Network ID
-    const networkId = await web3.eth.net.getId();
+      const web3 = window.web3;
+      const accounts = await web3.eth.getAccounts(); // Obtenir les comptes MetaMask
 
-    // Network data
-    if (networkId && Auth.networks[networkId]) {
-      const auth = new web3.eth.Contract(Auth.abi, Auth.networks[networkId].address);
-      return { auth, accounts: accounts }; // Return accounts along with other data
+      const networkId = await web3.eth.net.getId();
+      const deployedNetwork = AuthContract.networks[networkId];
+      const contract = new web3.eth.Contract(
+        AuthContract.abi,
+        deployedNetwork && deployedNetwork.address
+      );
+
+      return { web3, contract, account: accounts[0] }; // Retourne uniquement le premier compte
     } else {
-      throw new Error("Contract not deployed to detected network.");
+      console.error("MetaMask n'est pas installé !");
+      return { web3: null, contract: null, account: null };
     }
   } catch (error) {
-    console.error(error.message);
-    throw error;
+    console.error("Erreur lors du chargement des données de la blockchain :", error);
+    return { web3: null, contract: null, account: null };
   }
 };
 
-
-export const useWeb3 = () => {
-  const [web3Data, setWeb3Data] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const loadWeb3Data = async () => {
-      try {
-        const data = await loadBlockchainData();
-        setWeb3Data(data);
-      } catch (error) {
-        console.error(error.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadWeb3Data();
-  }, []);
-
-  return { web3Data, loading };
-};
+export { loadBlockchainData };
