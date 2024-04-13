@@ -56,10 +56,11 @@ export default function AddDoctor() {
     };
 
     return (
-        <div>
-            <h3>Add Doctor</h3>
-            <div>
-                <h2>Address Selector</h2>
+        <>
+        <div className='all'>
+        <div className="form-container">
+            <div className="sel">
+                <h2>Add Doctors</h2>
                 <label htmlFor="addressSelect">Choose an address:</label>
                 <select id="addressSelect" value={selectedAddress} onChange={handleAddressChange}>
                     <option value="">Select an address</option>
@@ -69,24 +70,53 @@ export default function AddDoctor() {
                 </select>
             </div>
 
-            <label>Username:</label>
+            <label>Username</label>
             <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
-            <label>Email:</label>
+            <label>Email</label>
             <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
-            <label>Password:</label>
+            <label>Password</label>
             <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-            <input type="text" value={service} onChange={(e) => setService(e.target.value)} /> {/* Nouveau champ pour le service */}
-            <button onClick={addDoctor}>Add Doctor</button>
+            <label>Service</label>
+            <input type="text" value={service} onChange={(e) => setService(e.target.value)} /> 
+            <button onClick={addDoctor} type="submit" >Add Doctor</button>
             <br />
-            <h4>List of Doctors:</h4>
-            <ul>
-                {doctors.map((doctor, index) => (
-                    <li key={index}>
-                        {`Name: ${doctor.username}, Email: ${doctor.email}, Password: ${doctor.password}`}
-                    </li>
-                ))}
-            </ul>
-            <br />
-        </div>
+            </div>
+            <div className="photo"
+     style={{
+            backgroundImage: `url(${require("../../component/pic/DD.png")})`,
+            }}>
+   </div>
+   </div>
+
+
+   <div className='table'>
+            <h2>List of Assistants:</h2>
+
+            <table >
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Password</th>
+           
+          </tr>
+        </thead>
+        <tbody>
+        {doctors.map((doctor, index) => (
+            <tr  key={index} >
+              <td> {doctor.username}</td>
+              <td>{doctor.email}</td>
+              <td>{doctor.password}</td>
+             
+
+
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      </div>
+
+           
+            </>
     );
 }

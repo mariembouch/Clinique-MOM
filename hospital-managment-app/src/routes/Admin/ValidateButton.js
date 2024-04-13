@@ -38,7 +38,7 @@ function ValidateButton({ patients }) {
 
   return (
     <div>
-      <button onClick={handleAddAllPatients}>Add and validate all patients </button>
+      <button onClick={handleAddAllPatients} type='submit'>Add and validate all patients </button>
     </div>
   );
 }

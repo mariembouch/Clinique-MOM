@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../../component/Head/Header';
 import Write from "./Write";
 import AllData from './AllData';
-import SideBar from "../../component/SideBar/SideBar"
+import Profile from '../../component/Profile/Profile';
 
 const Assistants = () => {
     
@@ -16,11 +16,15 @@ const Assistants = () => {
            
             <div className="login-container">
             <Header />
-            <SideBar />
+            <Profile />
 
-            <h2>Hello assistants</h2>
+            <h2>WELLCOME!</h2>
 
             <Write/>
+<br/>
+<br/>
+<br/>
+<br/>
 
             <AllData/>
                 {/* Add content for assistants here */}

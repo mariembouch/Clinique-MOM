@@ -2,6 +2,15 @@
 .Contact {
   padding: 0px;
 margin: 0px;
+position: fixed;
+top: 85%;
+
+transform: translateY(-50%);
+left: 0;
+width: 290px; /* Adjust width as needed */
+z-index: 999; /* Ensure it's above other content */
+overflow-y: auto; /* Allow sidebar content to scroll if it overflows */
+height: 1255px;
 }
 
 .Contact .left {
@@ -22,13 +31,37 @@ margin: 0px;
 }
 
 .Contact .img img {
-  max-height: 250px; /* Adjust the maximum height of the image */
+  max-height: 150px; /* Adjust the maximum height of the image */
   width: auto;
+  border-radius: 50px;
+
 }
+.details {
+  
+  text-align: center;
+
+}
+
+
 
 @media (max-width: 768px) {
   .Contact .left,
   .Contact .right {
     width: 100%;
   }
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #04923f;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color:#04923f;
 }

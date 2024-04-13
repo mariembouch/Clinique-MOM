@@ -54,24 +54,15 @@ function AddressSelector() {
   };
 
   return (
-    <div>
-      <h2>Address Selector</h2>
-      <label htmlFor="addressSelect">Choose an address:</label>
-      <select id="addressSelect" value={selectedAddress} onChange={handleAddressChange}>
-        <option value="">Select an address</option>
-        {invalidAddresses.map(address => (
-          <option key={address._id} value={address._id}>{address.Address}</option>
-        ))}
-      </select>
-
-      <br />
-      <label htmlFor="newAddress">New Address:</label>
+    <div className='form-container'>
+   <h2>Add Addresses</h2>
+      <label htmlFor="newAddress">New Address</label>
       <input type="text" id="newAddress" value={newAddress} onChange={handleNewAddressChange} placeholder="Enter a new address" />
       <br />
-      <label htmlFor="newKey">New Key:</label>
+      <label htmlFor="newKey">New Key</label>
       <input type="text" id="newKey" value={newKey} onChange={handleNewKeyChange} placeholder="Enter a new key" />
       <br />
-      <button onClick={handleSaveNewAddress}>Save New Address</button>
+      <button onClick={handleSaveNewAddress} type="submit">Save New Address</button>
       <br />
     </div>
   );

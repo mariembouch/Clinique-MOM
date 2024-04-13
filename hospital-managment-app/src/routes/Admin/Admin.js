@@ -3,7 +3,6 @@ import Header from '../../component/Head/Header';
 import AddAssistants from '../Admin/AddAssistants.js';
 import AddDoctors from '../Admin/AddDoctors.js';
 import Profile from '../../component/Profile/Profile';
-import AddDeleteTableRows from '../../component/table/AddDeleteTableRows.js';
 import AddAddressForm from './AddAddressForm.js';
 import AllData from './AllData.js';
 
@@ -15,26 +14,36 @@ const Admin = () => {
             <Header />
             <br />
             <br />
-            <br />
-            <br />
-            <div className="admin-container">
-                <div className="content">
+            
                     <Profile />
-                    <br />
-                    <br />
-                </div>
-            </div>
-            <AddDeleteTableRows />
-            <div>
-                <h4>Welcome home</h4>
-                <h3>Your account: {localStorage.getItem('account')}</h3>
-                <h3>Your email: {localStorage.getItem('email')}</h3>
+                   
+              
                 <AddAssistants />
+                <br /> <br />
+            <br /> <br />
+            <br /> <br />
+            <br />
+            <br />
                 <AddDoctors />
+                <br />
+            <br /> <br />
+            <br /> <br />
+            <br /> <br />
+            <br /> <br />
+            <br />
                 <AllData />
-                <AddAddressForm />
+                <br /> <br />
+            <br /> <br />
+            <br /> <br />
+            <br /> <br />
+            <br /> <br />
+            <br /> <br />
+            <br />
+            <br />
+                <AddAddressForm /> <br />
+            <br /> <br />
+            <br />
                 
-            </div>
         </>
     );
 };

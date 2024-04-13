@@ -1,0 +1,106 @@
+/* AddAssistant.css */
+
+/* Increase the size of the selector */
+#addressSelect {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+}
+.all .form-container label {
+    display: block;
+    text-align: left;}
+
+    .all {
+        display: flex;
+        width: 1100px; /* Set a fixed width for the photo */
+        justify-content: center; /* Center content horizontally */
+        margin-left: 300px; /* Move component to the right */
+    }
+    
+    .form-photo-container {
+        display: flex;
+        flex-direction: column;
+        margin: 20px;
+    }
+    
+    .form-container,
+    .photo {
+        flex: 1; /* Take up remaining space */
+        border-radius: 10px;
+    }
+    
+    .form-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        background-color: #e2e8ec;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .form-container h2 {
+        margin-bottom: 20px;
+        color: #04923f;
+    }
+    
+    input {
+        width: calc(100% - 20px); /* Adjust input width */
+        padding: 10px;
+        margin: 5px 0;
+        border: none;
+        border-radius: 5px;
+    }
+    
+    .form-container button[type="submit"] {
+        width: calc(100% - 20px); /* Adjust button width */
+        padding: 10px;
+        margin-top: 10px; /* Add margin between input and button */
+        border: none;
+        border-radius: 5px;
+        background-color: #04923f;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+    }
+    
+    .form-container button[type="submit"]:hover {
+        background-color: #057944;
+    }
+    
+    .photo {
+        background-size: contain;
+        background-position: center;
+        width: 200px;
+        height: auto;
+
+    }
+    
+
+    .table {
+        width: 100%; /* Largeur du tableau */
+        margin: 0 auto; /* Centrer le tableau horizontalement */
+        border-collapse: collapse; /* Fusionner les bordures des cellules */
+        margin-top: 20px; /* Espacement en haut du tableau */
+      }
+      
+      th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+      
+      th {
+        background-color: #04923f; /* Couleur de fond pour les en-têtes de colonne */
+        color: #fff; /* Couleur de texte pour les en-têtes de colonne */
+      }
+      
+      tr:nth-child(even) {
+        background-color: #f2f2f2; /* Couleur de fond pour les lignes paires */
+      }
+      
+      tr:hover {
+        background-color: #ddd; /* Couleur de fond au survol */
+      }
+      h2{
+        color: #04923f;
+      }

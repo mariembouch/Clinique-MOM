@@ -24,8 +24,11 @@ function AllData() {
 
 
   return (
-    <div>
-      <h2>All Data:</h2>
+    <>
+    <h2>Validate Patient </h2>
+
+    <div className='table'>
+      <h2>Validate Patient </h2>
       <table>
         <thead>
           <tr>
@@ -35,7 +38,8 @@ function AllData() {
             <th>Email</th>
             <th>CIN</th>
             <th>Gender</th>
-            <th>doctor spécialité===service </th>
+            <th>Service</th>
+
           </tr>
         </thead>
         <tbody>
@@ -47,13 +51,16 @@ function AllData() {
               <td>{patient.Email}</td>
               <td>{patient.CIN}</td>
               <td>{patient.Gender}</td>
+              <td>{patient.Service}</td>
+
             </tr>
           ))}
         </tbody>
       </table>
       <ValidateButton patients={allData} />
+    
     </div>
-  );
+    </>  );
 }
 
 export default AllData;

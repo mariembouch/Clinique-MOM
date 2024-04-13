@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { loadBlockchainData } from "../../Web3helpers";
-
+import "./AddAssistant.css";
 export default function AddAssistant() {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
@@ -58,11 +58,12 @@ export default function AddAssistant() {
     };
     
     return (
-        <div>
-            <h3>Add Assistant</h3>
-            <div>
-                <h2>Address Selector</h2>
-                <label htmlFor="addressSelect">Choose an address:</label>
+        <>
+        <div className='all'>
+        <div className="form-container">
+            <div className="sel">
+                <h2>Add Assistant</h2>
+                <label >Choose an address:</label>
                 <select id="addressSelect" value={selectedAddress} onChange={handleAddressChange}>
                     <option value="">Select an address</option>
                     {invalidAddresses.map(address => (
@@ -70,24 +71,50 @@ export default function AddAssistant() {
                     ))}
                 </select>
             </div>
-
-            <label>Username:</label>
+            <label  >Username</label>
             <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
-            <label>Email:</label>
-            <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
-            <label>Password:</label>
+            <label  >Email</label>
+            <input  value={email} onChange={(e) => setEmail(e.target.value)} />
+            <label  >Password</label>
             <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-            <button onClick={addAssistant}>Add Assistant</button>
+            <button onClick={addAssistant} type="submit" >Add Assistant</button>
             <br />
-            <h4>List of Assistants:</h4>
-            <ul>
-                {assistants.map((assistant, index) => (
-                    <li key={index}>
-                        {`Name: ${assistant.username}, Email: ${assistant.email}, Password: ${assistant.password}`}
-                    </li>
-                ))}
-            </ul>
-            <br />
-        </div>
+
+            </div>
+            <div className="photo"
+     style={{
+            backgroundImage: `url(${require("../../component/pic/AA.jpg")})`,
+            }}>
+   </div>
+   </div>
+   <div className='table'>
+            <h2>List of Assistants:</h2>
+
+            <table >
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Password</th>
+           
+          </tr>
+        </thead>
+        <tbody>
+        {assistants.map((assistant, index) => (
+            <tr  key={index} >
+              <td> {assistant.username}</td>
+              <td>{assistant.email}</td>
+              <td>{assistant.password}</td>
+             
+
+
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      </div>
+
+          
+        </>
     );
 }
