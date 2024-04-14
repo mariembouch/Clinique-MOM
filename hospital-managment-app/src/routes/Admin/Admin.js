@@ -48,16 +48,6 @@ const Admin = () => {
     );
 };
 
-const button = {
-    width: 100,
-    padding: 10,
-    borderRadius: 5,
-    margin: 10,
-    cursor: 'pointer',
-    fontSize: 17,
-    color: 'white',
-    backgroundColor: 'blue',
-    border: 'none',
-};
+
 
 export default Admin;

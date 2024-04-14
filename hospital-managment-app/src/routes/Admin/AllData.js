@@ -25,7 +25,8 @@ function AllData() {
 
   return (
     <>
-    <h2>Validate Patient </h2>
+    <section id='addpa'>
+    <h2  >Validate Patient </h2>
 
     <div className='table'>
       <h2>Validate Patient </h2>
@@ -60,7 +61,9 @@ function AllData() {
       <ValidateButton patients={allData} />
     
     </div>
-    </>  );
+    </section>
+    </> 
+     );
 }
 
 export default AllData;

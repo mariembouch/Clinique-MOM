@@ -195,3 +195,25 @@
     background-color:#04923f;
   }
   
+
+  .formm .input span {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+    font-weight: bold;
+
+
+ 
+  }
+
+
+
+.formm .input input[type="text"],
+  .formm .input input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+ 
+

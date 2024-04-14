@@ -120,8 +120,6 @@ const Carousel = () => {
       />
       <div className="containerLOG">
         <div className="slide" ref={slideRef}>
-
-
           <div
             className="item"
             style={{
@@ -129,27 +127,29 @@ const Carousel = () => {
             }}
           >
             <div className="contentLOG">
-              <div className="name">
-                cher(e) membre MOM-clinique ,Bienvenue!
-              </div>
+                    <div className="name">
+                      cher(e) membre MOM-clinique ,Bienvenue!
+                    </div>
              
-              <form className="form-container"  onSubmit={login}>
-                <div className="input">
-                  <span>Email</span>
-                  <input
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          type="text"
-        />                </div>
-                <div className="input">
-                  <span>Mot de passe</span>
-                  <input
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          type="password"
-        />                </div>
-                <button type="submit">Se connecter</button>
-              </form>{" "}
+              <form className="formm" onSubmit={login}>
+                    <div className="input">
+                      <span>Email</span>
+                      <input
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        type="text"
+                        />                
+                      </div>
+                      <div className="input">
+                        <span>Mot de passe</span>
+                        <input
+                          value={password}
+                          onChange={(e) => setPassword(e.target.value)}
+                          type="password"
+                        />                
+                      </div>
+                      <button type="submit">Se connecter</button>
+               </form>{" "}
             </div>
           </div>
 
@@ -165,7 +165,7 @@ const Carousel = () => {
             <div className="contentLOG">
               <div className="name">Cher(e) patient(e), bienvenue ! </div>
            
-              <form className="form-container" onSubmit={handleSubmit}>
+              <form  className="formm" onSubmit={handleSubmit}>
                 <div className="input">
                   <span>E-mail:</span>
                   <input
@@ -206,7 +206,7 @@ const Carousel = () => {
                 cher(e) membre MOM-clinique ,Bienvenue!
               </div>
              
-              <form className="form-container"  onSubmit={login}>
+              <form className="formm"  onSubmit={login}>
                 <div className="input">
                   <span>Email</span>
                   <input
@@ -237,7 +237,7 @@ const Carousel = () => {
             <div className="contentLOG">
               <div className="name">Cher(e) patient(e), bienvenue ! </div>
            
-              <form className="form-container" onSubmit={handleSubmit}>
+              <form className="formm" onSubmit={handleSubmit}>
                 <div className="input">
                   <span>E-mail:</span>
                   <input

@@ -6,7 +6,7 @@ export default function AddDoctor() {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [doctors, setDoctors] = useState([]);
+    const [doctors] = useState([]);
     const [invalidAddresses, setInvalidAddresses] = useState([]);
     const [selectedAddress, setSelectedAddress] = useState('');
     const [service, setService] = useState(""); // Nouveau champ pour le service
@@ -57,7 +57,7 @@ export default function AddDoctor() {
 
     return (
         <>
-        <div className='all'>
+        <div className='all' id="adddo">
         <div className="form-container">
             <div className="sel">
                 <h2>Add Doctors</h2>
@@ -90,7 +90,7 @@ export default function AddDoctor() {
 
 
    <div className='table'>
-            <h2>List of Assistants:</h2>
+            <h2>List of Doctors:</h2>
 
             <table >
         <thead>

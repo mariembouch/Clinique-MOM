@@ -65,3 +65,25 @@ button[type="submit"] {
 button[type="submit"]:hover {
   background-color:#04923f;
 }
+.Contact .details a {
+  display: block; /* Display links as block elements */
+  margin-bottom: 10px; /* Add space between each link */
+}
+
+.Contact .details a[type="submit"] {
+  /* Add your button styles if needed */
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #04923f;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center; /* Center align text */
+  text-decoration: none; /* Remove default underline */
+}
+
+.Contact .details a[type="submit"]:hover {
+  background-color: #037e34; /* Darken the background color on hover */
+}

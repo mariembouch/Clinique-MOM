@@ -32,7 +32,7 @@ function Write() {
 
   return (
     <>
-    <div className='all'>
+    <div className='all' id='addap'>
     <div className="form-container">
       <h2>Add Patients</h2> {/* Titre "Add Patients" */}
       <input type="text" name="prenom" placeholder="prenom" value={patientData.prenom} onChange={handleChange} />

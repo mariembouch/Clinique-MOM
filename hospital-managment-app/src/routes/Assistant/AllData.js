@@ -24,7 +24,7 @@ function AllData() {
 
 
   return (
-    <div className='table'>
+    <div className='table' id='seepa'>
       <h2>Patients</h2>
       <table>
         <thead>

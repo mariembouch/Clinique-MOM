@@ -18,7 +18,6 @@ const Assistants = () => {
             <Header />
             <Profile />
 
-            <h2>WELLCOME!</h2>
 
             <Write/>
 <br/>

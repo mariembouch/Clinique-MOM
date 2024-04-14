@@ -59,7 +59,7 @@ export default function AddAssistant() {
     
     return (
         <>
-        <div className='all'>
+        <div className='all' id="addas">
         <div className="form-container">
             <div className="sel">
                 <h2>Add Assistant</h2>

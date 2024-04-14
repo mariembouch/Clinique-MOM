@@ -20,6 +20,7 @@
   letter-spacing: 1px;
 }
 
+
 .header ul li a:hover {
   color: #04923f;
 }
@@ -125,4 +126,30 @@
     border-radius: 50%;
 
   }
- 
+ /* Add this CSS to your header.css file */
+
+/* Search input */
+.search {
+  border: 1px solid #ccc; /* Add a border */
+  border-radius: 5px; /* Add some border radius for rounded corners */
+  padding: 8px 12px; /* Add padding to the input */
+  font-size: 18px; /* Adjust font size */
+  transition: border-color 0.3s ease; /* Add a smooth transition for the border color */
+}
+
+/* Style the input when it's focused */
+.search:focus {
+  border-color: #04923f; /* Change border color when input is focused */
+  outline: none; /* Remove default outline */
+}
+
+/* Style placeholder text */
+.search::placeholder {
+  color: #999; /* Change placeholder color */
+}
+.search-icon {
+  position: absolute;
+  top:40px;
+  right: 450px; /* Adjust as needed */
+  color:#04923f; /* Adjust icon color */
+}

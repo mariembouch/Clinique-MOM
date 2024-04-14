@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import HomePage from "../routes/HomePage/HomePage.js";
 import Doctors from "../routes/Doctors/Doctor.js"
 import Admin from "../routes/Admin/Admin.js"
-import Patients from "../routes/Clients/Client.js"
+import Client from "../routes/Clients/Client.js"
 import Assistants from "../routes/Assistant/Assistant.js"
 import Ambulance from "../routes/Ambulance/Ambulance.js"
 import SignIn from  "../routes/Login/Connexion.js" 
@@ -20,12 +20,12 @@ const Controller = () => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/doctors" element={<Doctors />} /> {/* Route for doctors */}
-        <Route path="/patients" element={<Patients />} /> {/* Route for patients */}
+        <Route path="/patients" element={< Client/>} /> {/* Route for patients */}
         <Route path="/assistants" element={<Assistants />} /> {/* Route for assistants */}
         <Route path="/Admin" element={<Admin />} /> {/* Route for admin */}
         <Route path="/Ambulance" element={<Ambulance />} /> {/* Route for ambulance */}
        
-          <Route path="/SignIn" element={<SignIn />} />
+          <Route path="/SignIn" element={<SignIn/>} />
       </Routes>
     </Router>
   );
@@ -42,4 +42,5 @@ export default Controller;
         import SignInB from "../routes/Login/Login.js"
 import Loginmongo from "../routes/Login/loginmongo.js"
 import Carousel from "../routes/Login/LoginAll.js"
+|| path === '/assistants' || path === '/doctors' || path==='patients'
 */
