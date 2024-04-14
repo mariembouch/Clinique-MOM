@@ -56,17 +56,16 @@ const Header = () => {
             <li>
               <a href="#Services">Services</a>
             </li>
+            
             <li>
-              <a href="#Doctors">Doctors</a>
+              <a href="#Blocs">co-worker</a>
             </li>
+            
             <li>
-              <a href="#Blocs">Blocs</a>
+              <a href="#Headv">donnation</a>
             </li>
             <li>
               <a href="#location">location</a>
-            </li>
-            <li>
-              <a href="#Headv">Headv</a>
             </li>
             <li>
               <Link to="/SignIn" className="home-btn">
