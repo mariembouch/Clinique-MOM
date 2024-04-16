@@ -1,0 +1,56 @@
+.Contactco .leftco {
+    width: 36%;
+  }
+  .Contactco .rightco {
+    width: 60%;
+  }
+  .Contactco .boxco {
+    padding: 30px;
+  }
+  .Contactco .detailsco h1 {
+    margin: 20px 0 20px 0;
+    font-size: 35px;
+  }
+  .Contactco .detailsco p {
+    font-size: 17px;
+  }
+  .Contactco .buttonco{
+    margin-top: 20px;
+  }
+  .Contactco button {
+    margin-right: 20px;
+  }
+  
+  .Contactco .rightco {
+    padding: 35px;
+  }
+  .Contactco .inputco span {
+    font-size: 13px;
+  }
+  .Contactco input {
+    margin-top: 10px;
+  }
+  .Contactco .rightco button {
+    width: 100%;
+    color: #04923f;
+  }
+  .Contactco .rightco button:hover {
+    color: white;
+  }
+  .Contactco .rightco button i {
+    margin-left: 10px;
+  }
+  @media (max-width: 768px) {
+    .Contactco .d_flex {
+      flex-direction: column;
+    }
+    .Contactco .leftco,
+    .Contactco .rightco {
+      width: 100%;
+      margin-top: 50px;
+    }
+  }
+  .Contactco .containerco .headingco  h1{
+    font-size: 50px;
+
+  }
