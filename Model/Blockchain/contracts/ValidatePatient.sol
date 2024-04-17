@@ -5,6 +5,8 @@ contract ValidatePatient {
     uint256 public patientCount = 0;
 
     mapping(uint256 => Patient) public patientsList;
+    mapping(string => Patient) public patientsByCode; 
+
 
     struct Patient {
         string code;
@@ -59,5 +61,12 @@ contract ValidatePatient {
             temperatures[i - 1] = patientsList[i].temperature;
             hashLists[i - 1] = patientsList[i].hashList;
         }
+    }
+
+
+      // Function to get a patient by code
+    function getPatientByCode(string memory _code) public view returns (string memory, string memory, uint256, bytes32[] memory) {
+        Patient memory patient = patientsByCode[_code];
+        return (patient.code, patient.name, patient.temperature, patient.hashList);
     }
 }

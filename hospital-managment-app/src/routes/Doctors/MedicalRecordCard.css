@@ -1,0 +1,94 @@
+
+
+.btn-modal1 {
+  padding: 10px 20px;
+  display: block;
+  margin: 100px auto 0;
+  font-size: 18px;
+}
+
+.modal1,
+.overlay1 {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+
+
+}
+
+.overlay1 {
+  background-color: #ecf0f3;
+}
+.modal-content1 {
+  position: absolute;
+  align-items: center;
+  margin-left: 200px;
+  top: 20%;
+  left: 8%;
+  line-height: 1.4;
+  background: #f0f3f5;
+  padding: 14px 28px;
+  border-radius: 3px;
+  max-width: 85%;
+  min-width: 60%;
+  z-index: 9999;
+  box-shadow: 4px 4px 8px #cbcbcb, -4px -4px 8px #ffffff;
+  padding: 50px;
+  border-radius: 10px;
+}
+
+.modal-text1 {
+  padding: 0 100px 0 50px;
+}
+.modal-text1 h1 {
+  margin: 20px 0 20px 0;
+  font-size: 30px;
+}
+.modal-text1 p {
+  font-size: 17px;
+  margin-bottom: 20px;
+  line-height: 25px;
+}
+.modal-text1 button {
+  margin-right: 20px;
+  color: #04923f;
+}
+.modal-text1 button i {
+  margin-left: 10px;
+}
+.modal-text1 button.close-modal {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  border-radius: 50%;
+  padding: 0 0;
+  font-size: 20px;
+}
+.modal-text1 button.close-modal1 i {
+  margin: 0;
+}
+/*------------popup--------*/
+@media (max-width: 768px) {
+  .modal,
+  .overlay {
+    overflow: scroll;
+  }
+
+  .modal .modal-img {
+    margin: 50px 0 50px 0;
+  }
+  .modal-content {
+    flex-direction: column;
+  }
+  .modal .right,
+  .modal .left {
+    padding: 0;
+  }
+}

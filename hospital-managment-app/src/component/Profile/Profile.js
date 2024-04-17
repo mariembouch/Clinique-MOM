@@ -35,7 +35,6 @@ const Profile = () => {
                   <a type="submit" href="#adddo">Add Doctor</a>
                   <a type="submit" href="#addpa">Validate Patient</a>
                    <a type="submit" href="#addadr">Add Adresses</a>
-                   <a type="submit" href="#addam">Ambulance</a>
 
                   <br />
                                     <br />

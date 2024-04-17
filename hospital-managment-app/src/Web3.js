@@ -41,3 +41,40 @@ export const loadBlockchainData = async () => {
     throw error;
   }
 };
+
+export const loadPatientsData = async () => {
+  try {
+    const { valid, accounts } = await loadBlockchainData();
+    const { count, codes, names, temperatures, hashLists } = await valid.methods.getAllPatients().call({ from: accounts });
+    const patients = [];
+    for (let i = 0; i < count; i++) {
+      const patient = {
+        code: codes[i],
+        name: names[i],
+        temperature: temperatures[i],
+        hashList: hashLists[i]
+      };
+      patients.push(patient);
+    }
+    return patients;
+  } catch (error) {
+    console.error('Error loading patients data:', error);
+    throw error;
+  }
+};
+export const loadPatientByCode = async (patientCode) => {
+  try {
+    const { valid, accounts } = await loadBlockchainData();
+    const patientData = await valid.methods.getPatientByCode(patientCode).call({ from: accounts });
+    const patient = {
+      code: patientData[0],
+      name: patientData[1],
+      temperature: patientData[2],
+      hashList: patientData[3]
+    };
+    return patient;
+  } catch (error) {
+    console.error('Error loading patient data by code:', error);
+    throw error;
+  }
+};

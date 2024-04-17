@@ -32,7 +32,7 @@ const Contact = () => {
 	`
     )
   }
-  return (
+  return (  
     <>
       <section className='Contactco' id='contact'>
         <div className='containerco top'>

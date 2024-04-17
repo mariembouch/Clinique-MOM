@@ -6,6 +6,7 @@ const Loginmongo = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -13,7 +14,11 @@ const Loginmongo = () => {
         email,
         password,
       });
+      const { user } = response.data;
+
       console.log(response.data);
+      localStorage.setItem('user', JSON.stringify(user));
+
       // Redirigez l'utilisateur vers la page des patients si la connexion réussit
       window.location.href = "/patients";
     } catch (error) {

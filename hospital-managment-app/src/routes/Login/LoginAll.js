@@ -96,7 +96,11 @@ const Carousel = () => {
         email,
         password,
       });
+      const { user } = response.data;
+
       console.log(response.data);
+      localStorage.setItem('user', JSON.stringify(user));
+
       // Redirigez l'utilisateur vers la page des patients si la connexion réussit
       window.location.href = "/patients";
     } catch (error) {

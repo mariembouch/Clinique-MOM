@@ -7,6 +7,7 @@ import Client from "../routes/Clients/Client.js"
 import Assistants from "../routes/Assistant/Assistant.js"
 import Ambulance from "../routes/Ambulance/Ambulance.js"
 import SignIn from  "../routes/Login/Connexion.js" 
+import Loginmongo from  "../routes/Login/loginmongo.js" 
 
 import "./Controller.css";
 
@@ -24,7 +25,9 @@ const Controller = () => {
         <Route path="/assistants" element={<Assistants />} /> {/* Route for assistants */}
         <Route path="/Admin" element={<Admin />} /> {/* Route for admin */}
         <Route path="/Ambulance" element={<Ambulance />} /> {/* Route for ambulance */}
-       
+        
+        <Route path="/Loginmongo" element={<Loginmongo />} /> {/* Route for ambulance */}
+
           <Route path="/SignIn" element={<SignIn/>} />
       </Routes>
     </Router>

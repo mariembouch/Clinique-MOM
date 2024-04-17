@@ -1,0 +1,13 @@
+.all123 h2  {
+    display: flex;
+    width: 1000px; /* Set a fixed width for the photo */
+    justify-content: center; /* Center content horizontally */
+    margin-left: 150px; /* Move component to the right */
+    margin-top: 50px;
+}
+.all123 .ta {
+    display: flex;
+    width: 1000px; /* Set a fixed width for the photo */
+    justify-content: center; /* Center content horizontally */
+    margin-left: 150px; /* Move component to the right */
+}

@@ -1,8 +1,10 @@
 .all {
     display: flex;
-    width: 1100px; /* Set a fixed width for the photo */
+    width: 1000px; /* Set a fixed width for the photo */
     justify-content: center; /* Center content horizontally */
     margin-left: 300px; /* Move component to the right */
+    margin-top: 35px;
+
 }
 
 .form-photo-container {
