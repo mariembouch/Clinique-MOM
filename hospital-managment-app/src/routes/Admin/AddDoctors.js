@@ -10,6 +10,32 @@ export default function AddDoctor() {
     const [invalidAddresses, setInvalidAddresses] = useState([]);
     const [selectedAddress, setSelectedAddress] = useState('');
     const [service, setService] = useState(""); // Nouveau champ pour le service
+    const subject ="your New account authentification details for mom-clinique ";
+
+    const message = `
+    <html>
+      <head>
+      <style>
+      /* Stylisation du titre h1 en vert */
+      h1 {
+        color: green;
+      }
+    </style>
+      </head>
+      <body>
+        <h1>Welcome to MOM-Clinique!</h1>
+        <p>Thank you for joining our Clinique as a member. Below are your authentication details:</p>
+        <ul>
+          <li><strong>Address Metamask: </strong> ${selectedAddress}</li>
+          <li><strong>Email:</strong> ${email}</li>
+          <li><strong>Password:</strong> ${password}</li>
+
+        </ul>
+        <p>We hope you enjoy using our services!</p>
+        <p>Best regards,<br/>The MOM-Clinique Team</p>
+      </body>
+    </html>
+  `;
 
     useEffect(() => {
         const fetchInvalidAddresses = async () => {
@@ -47,6 +73,8 @@ export default function AddDoctor() {
 
                 // Update the validity of the selected address in MongoDB
                 await axios.put(`http://localhost:5000/makeValidDataModel1/${selectedAddress}`);
+                await  axios.get("http://localhost:5002/", {params: {email,subject,message}});
+
             } else {
                 console.error("Unable to fetch contract data.");
             }

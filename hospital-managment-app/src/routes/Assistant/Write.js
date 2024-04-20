@@ -29,6 +29,47 @@ function Write() {
       console.log("Error while saving data:", error.message);
     }
   };
+  const subject ="your New account authentification details for mom-clinique ";
+  const message = `
+    <html>
+      <head>
+      <style>
+      /* Stylisation du titre h1 en vert */
+      h1 {
+        color: green;
+      }
+    </style>
+      </head>
+      <body>
+        <h1>Welcome to MOM-Clinique!</h1>
+        <p>Thank you for joining our Clinique as a patient. Below are your authentication details:</p>
+        <ul>
+          <li><strong>Email Address:</strong> ${patientData.Email}</li>
+          <li><strong>Password:</strong> ${patientData.CIN}</li>
+        </ul>
+        <p>We hope you enjoy using our services!</p>
+        <p>Best regards,<br/>The MOM-Clinique Team</p>
+      </body>
+    </html>
+  `;
+    const sendMail = () => {
+    axios
+      .get("http://localhost:5002/", {
+        params: {
+        email:patientData.Email,
+          subject,
+          message,
+        },
+      })
+      .then(() => {
+        //success
+        console.log("success");
+      })
+      .catch(() => {
+        console.log("failure");
+      });
+  };
+
 
   return (
     <>
@@ -42,7 +83,7 @@ function Write() {
       <input type="text" name="Gender" placeholder="Gender" value={patientData.Gender} onChange={handleChange} />
       <input type="text" name="Service" placeholder="Service" value={patientData.Service} onChange={handleChange} />
 
-      <button onClick={saveData} type="submit">Save</button>
+      <button onClick={()=>{saveData(); sendMail();}} type="submit">Save</button>
     </div>
      <div className="photo"
      style={{

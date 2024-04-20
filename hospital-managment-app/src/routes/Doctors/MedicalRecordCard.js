@@ -1,5 +1,6 @@
 import React from 'react';
 import "./MedicalRecordCard.css";
+import pic from"../../component/pic/medical-report.png"
 
 function MedicalRecordCard({ name, code, hashlist,onClose }) {
   return (
@@ -7,9 +8,7 @@ function MedicalRecordCard({ name, code, hashlist,onClose }) {
     <div className='modal1'>
       <div  className='overlay1'>
       <div className='modal-content1 d_flex'>
-            <div className='modal-img1 left'>
-              <img src="../pic" alt='' />
-            </div>
+            
             <div className='modal-text1 right'>
 
         <button className='close-modal btn_shadow'onClick={onClose}>
@@ -23,7 +22,7 @@ function MedicalRecordCard({ name, code, hashlist,onClose }) {
           <strong>Code:</strong> {code}
         </div>
         <div>
-          <strong>files:</strong> {hashlist}
+          <strong>Add files:</strong> {hashlist}
         </div>
         <div className='button f_flex '>
 
@@ -34,7 +33,23 @@ function MedicalRecordCard({ name, code, hashlist,onClose }) {
                   Scanner
                 </button>
                 </div>
+
+                <div>
+          <strong>Show files:</strong> {hashlist}
+        </div>
+        <div className='button f_flex '>
+
+                <button className='btn_shadow'>
+                  IRM 
+                </button>
+                <button className='btn_shadow'>
+                  Scanner
+                </button>
+                </div>
+
+
               <div>
+                
           <strong>Temperature:</strong> {hashlist}
         </div>
               <table>

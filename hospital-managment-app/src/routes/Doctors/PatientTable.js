@@ -39,7 +39,9 @@ function PatientTable() {
             <tr>
               <th>Code</th>
               <th>Name</th>
+
               <th>Medical Record</th>
+
             </tr>
           </thead>
           <tbody>
@@ -47,9 +49,11 @@ function PatientTable() {
               <tr key={index}>
                 <td>{patient.code}</td>
                 <td>{patient.name}</td>
+
                 <td>
                   <button onClick={() => handleMedicalRecordClick(patient.name, patient.code,patient.hashList)} className='btn_shadow'>Open</button>
                 </td>
+
               </tr>
             ))}
           </tbody>

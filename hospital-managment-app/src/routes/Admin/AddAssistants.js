@@ -27,6 +27,31 @@ export default function AddAssistant() {
         const selectedValue = e.target.value;
         setSelectedAddress(selectedValue);
     };
+    const subject ="your New account authentification details for mom-clinique ";
+    const message = `
+    <html>
+      <head>
+      <style>
+      /* Stylisation du titre h1 en vert */
+      h1 {
+        color: green;
+      }
+    </style>
+      </head>
+      <body>
+        <h1>Welcome to MOM-Clinique!</h1>
+        <p>Thank you for joining our Clinique as a member . Below are your authentication details:</p>
+        <ul>
+          <li><strong>Address Metamask: </strong> ${selectedAddress}</li>
+          <li><strong>Email:</strong> ${email}</li>
+          <li><strong>Password:</strong> ${password}</li>
+
+        </ul>
+        <p>We hope you enjoy using our services!</p>
+        <p>Best regards,<br/>The MOM-Clinique Team</p>
+      </body>
+    </html>
+  `;
 
     const addAssistant = async () => {
         try {
@@ -38,7 +63,8 @@ export default function AddAssistant() {
     
                 // Update the validity of the selected address in MongoDB
                 await axios.put(`http://localhost:5000/makeValidDataModel1/${selectedAddress}`);
-    
+                await  axios.get("http://localhost:5002/", {params: {email,subject,message}});
+
                 // Log the added assistant's data
                 console.log("Assistant added successfully. Assistant Data:", {
                     address: selectedAddress,
@@ -83,7 +109,7 @@ export default function AddAssistant() {
             </div>
             <div className="photo"
      style={{
-            backgroundImage: `url(${require("../../component/pic/AA.jpg")})`,
+            backgroundImage: `url(${require("../../component/pic/AA3.jpeg")})`,
             }}>
    </div>
    </div>

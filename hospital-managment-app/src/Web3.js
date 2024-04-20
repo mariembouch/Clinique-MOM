@@ -31,7 +31,6 @@ export const loadBlockchainData = async () => {
     if (networkId && valid.networks[networkId]) {
       const validContract = new web3.eth.Contract(valid.abi, valid.networks[networkId].address);
       console.log("smartContractAdr",valid.networks[networkId].address,networkId);
-      
       return { valid: validContract, accounts: accounts[0] };
     } else {
       throw new Error('Unable to get network ID');
@@ -62,19 +61,22 @@ export const loadPatientsData = async () => {
     throw error;
   }
 };
-export const loadPatientByCode = async (patientCode) => {
+
+
+
+export const setPatientTemperature = async (patientCode, temperature) => {
   try {
     const { valid, accounts } = await loadBlockchainData();
-    const patientData = await valid.methods.getPatientByCode(patientCode).call({ from: accounts });
-    const patient = {
-      code: patientData[0],
-      name: patientData[1],
-      temperature: patientData[2],
-      hashList: patientData[3]
-    };
-    return patient;
+    await valid.methods.setTemperature(patientCode, temperature).send({ from: accounts });
+    console.log('Temperature set successfully for patient:', patientCode);
   } catch (error) {
-    console.error('Error loading patient data by code:', error);
+    console.error('Error setting temperature for patient:', error);
     throw error;
   }
 };
+
+// Utilisation de la fonction pour définir la température d'un patient
+const patientCode = '6622b5d0bc73a8de8ee1a160'; // Remplacez par le code du patient que vous souhaitez modifier
+const newTemperature = 37; // Remplacez par la nouvelle température à définir
+
+setPatientTemperature(patientCode, newTemperature);
