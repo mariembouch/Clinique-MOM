@@ -67,16 +67,12 @@ export const loadPatientsData = async () => {
 export const setPatientTemperature = async (patientCode, temperature) => {
   try {
     const { valid, accounts } = await loadBlockchainData();
-    await valid.methods.setTemperature(patientCode, temperature).send({ from: accounts });
-    console.log('Temperature set successfully for patient:', patientCode);
+   const toto= await valid.methods.setTemperature(patientCode, temperature).send({ from: accounts });
+    console.log('Temperature set successfully for patient:', toto);
   } catch (error) {
     console.error('Error setting temperature for patient:', error);
     throw error;
   }
 };
 
-// Utilisation de la fonction pour définir la température d'un patient
-const patientCode = '6622b5d0bc73a8de8ee1a160'; // Remplacez par le code du patient que vous souhaitez modifier
-const newTemperature = 37; // Remplacez par la nouvelle température à définir
 
-setPatientTemperature(patientCode, newTemperature);

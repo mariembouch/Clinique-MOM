@@ -29,8 +29,12 @@ const DataSchema = new mongoose.Schema({
         valid: {
             type: Number,
             default: 0 // Provide a default value
+        },
+      cidirm: {
+        type: String,
+        default: "" // Provide a default value
+    }
 
-        }
  
     
 });

@@ -69,6 +69,52 @@ app.put('/validate/all', async (req, res) => {
 });
 
 
+
+
+// Endpoint to update cidirm field of a patient by their MongoDB ID
+app.put('/updateCidirm/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { cidirm } = req.body;
+
+    // Find the patient by their MongoDB ID and update the cidirm field
+    const updatedPatient = await DataModel.findByIdAndUpdate(id, { cidirm: cidirm }, { new: true });
+
+    if (!updatedPatient) {
+      return res.status(404).json({ error: 'Patient not found' });
+    }
+
+    res.json({ message: 'Cidirm updated successfully', updatedPatient });
+  } catch (error) {
+    console.error('Error while updating cidirm:', error);
+    res.status(500).json({ error: 'Server error while updating cidirm' });
+  }
+});
+
+
+
+// Endpoint to get cidirm value of a patient by their MongoDB ID
+app.get('/getCidirm/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    // Find the patient by their MongoDB ID
+    const patient = await DataModel.findById(id);
+
+    if (!patient) {
+      return res.status(404).json({ error: 'Patient not found' });
+    }
+
+    // Return the cidirm value of the patient
+    res.json({ cidirm: patient.cidirm });
+  } catch (error) {
+    console.error('Error while getting cidirm:', error);
+    res.status(500).json({ error: 'Server error while getting cidirm' });
+  }
+});
+
+
+
 // Endpoint to fetch all data from the database
 app.get("/alldata", async (req, res) => {
   try {
@@ -88,7 +134,7 @@ app.get("/readfromserver", (req, res) => {
 
 app.post("/writetodatabase", async (req, res) => {
   try {
-    const { prenom, nom, Email, CIN, Gender,Service ,valid} = req.body;
+    const { prenom, nom, Email, CIN, Gender,Service,valid} = req.body;
     const newData = new DataModel({ prenom, nom, Email, CIN, Gender,Service, valid});
     await newData.save();
     res.json({ message: "Data saved successfully" });

@@ -20,7 +20,7 @@ function Write() {
 
   const saveData = async () => {
     try {
-      const dataToSend = { ...patientData, valid: 0 }; // Inclure le champ valide
+      const dataToSend = { ...patientData,valid: 0 }; // Inclure le champ valide
       await axios.post("http://localhost:5000/writetodatabase", dataToSend);
       alert("Data saved successfully");
       window.location.reload();

@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 contract ValidatePatient {
     uint256 public patientCount = 0;
     mapping(uint256 => Patient) public patientsList;
-    mapping(string => uint256) private patientIndex; // Mapping pour stocker l'indice du patient par son code
+    mapping(string => uint256) public patientIds; // Mapping pour stocker l'ID du patient en fonction de son code
 
     struct Patient {
         string code;
@@ -31,7 +31,7 @@ contract ValidatePatient {
                 uint256(keccak256(abi.encodePacked(_patients[i][2]))), // temperature, convertir la chaîne en hachage
                 emptyArray // hashList, initialisé à un tableau vide
             );
-            patientIndex[_patients[i][0]] = patientCount; // Mise à jour du mapping patientIndex
+            patientIds[_patients[i][0]] = patientCount;
 
             emit PatientAdded(
                 _patients[i][0], // code
@@ -65,15 +65,13 @@ contract ValidatePatient {
     }
 
 
-    function setTemperature(string memory _code, uint256 _temperature) public {
-        require(patientIndex[_code] != 0, "Patient not found"); // Vérifie si le patient existe
-        patientsList[patientIndex[_code]].temperature = _temperature; // Met à jour la température du patient
+  function setTemperature(string memory _code, uint256 _temperature) public {
+        uint256 patientId = patientIds[_code];
+        require(patientId != 0, "Patient not found");
+
+        patientsList[patientId].temperature = _temperature;
     }
 
-    function getTemperature(string memory _code) public view returns (uint256) {
-        require(patientIndex[_code] != 0, "Patient not found"); // Vérifie si le patient existe
-        return patientsList[patientIndex[_code]].temperature; // Récupère la température du patient
-    }
 
 
 }
